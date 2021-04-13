@@ -1,8 +1,9 @@
 import BaseLayout from 'components/BaseLayout';
 import Link from 'next/link';
 import Image from 'next/image';
+import useSWR from "swr";
 import getRecentOffers from "services/offers/getRecent";
-
+import { jsonFetcher } from 'utils'
 export const getStaticProps = async () => {
   const offers = await  getRecentOffers(10);
 
@@ -14,6 +15,7 @@ export const getStaticProps = async () => {
 };
 
 export default function Home({offers}) {
+  const { data } = useSWR('/api/offers', jsonFetcher, { initialData: offers});
   return (
     <BaseLayout>
       <section className="text-gray-600 body-font">
@@ -31,7 +33,7 @@ export default function Home({offers}) {
             </p>
           </div>
           <div className="flex flex-wrap -m-4">
-            {offers.map((offer) => (
+            {data.map((offer) => (
               <div key={offer.id} className="xl:w-1/4 md:w-1/2 p-4 cursor-pointer">
                 <Link href={`/offers/${offer.id}`}>
                   <div className="bg-gray-100 p-6 rounded-lg">
