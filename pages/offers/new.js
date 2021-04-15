@@ -4,13 +4,15 @@ import { useRouter } from "next/router";
 
 export default function OfferNew() {
   const [formProcessing, setFormProcessing] = useState(false);
+  const [error, setError] = useState();
   const offerForm = useRef();
   const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setFormProcessing(true);
     if(formProcessing) return;
+    setFormProcessing(true);
+    setError(null);
     const form = new FormData(offerForm.current);
 
     const payload = {
@@ -22,7 +24,7 @@ export default function OfferNew() {
       location: form.get('location')
     };
 
-    await fetch('/api/offers', {
+    const response = await fetch('/api/offers', {
       method: 'POST',
       body: JSON.stringify(payload),
       headers: {
@@ -30,7 +32,13 @@ export default function OfferNew() {
       }
     })
 
-    router.push('/offers/thanks');
+    if(response.ok){
+      router.push('/offers/thanks');
+    } else {
+      const payload = await response.json();
+      setFormProcessing(false);
+      setError(payload.error?.details[0]?.message);
+    }
   }
 
   return (
@@ -133,6 +141,13 @@ export default function OfferNew() {
                 <button disabled={formProcessing} className="disabled:opacity-50 flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">
                   {formProcessing ? "Please wait..." : "Submit offer"}
                 </button>
+                {error && (
+                  <div className="flex justify-center w-full my-5">
+                    <span className="bg-red-600 w-full rounded text-center text-white">
+                      Offer not added: {error}
+                    </span>
+                  </div>
+                )}
               </div>
             </form>
           </div>
