@@ -1,0 +1,11 @@
+POST http://localhost:3000/api/offers
+Content-Type: application/json
+
+{
+  "category": "rent",
+  "description": "The best value and quality",
+  "location": "Berlin",
+  "mobile": "500100200",
+  "price": "1000",
+  "title": "Marina"
+}
