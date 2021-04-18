@@ -3,9 +3,10 @@ import Link from 'next/link';
 import Image from 'next/image';
 import useSWR from "swr";
 import getRecentOffers from "services/offers/getRecent";
-import { jsonFetcher } from 'utils'
+import { jsonFetcher } from 'utils';
+
 export const getStaticProps = async () => {
-  const offers = await  getRecentOffers(10);
+  const offers = await  getRecentOffers(4);
 
   return {
     props: {
