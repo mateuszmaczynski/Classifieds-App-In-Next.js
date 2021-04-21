@@ -1,7 +1,7 @@
 import BaseLayout from '../../components/BaseLayout';
-import getRecentOffers from "../../services/offers/getRecent";
+import getRecentOffers from '../../services/offers/getRecent';
 import getOffer from 'services/offers/get';
-import { useRouter } from "next/router";
+import { useRouter } from 'next/router';
 
 export const getStaticPaths = async () => {
   const offers = await getRecentOffers(4);
@@ -9,7 +9,7 @@ export const getStaticPaths = async () => {
   return {
     paths: offers.map((offer) => ({ params: { id: String(offer.id) } })),
     fallback: true
-  }
+  };
 };
 
 export const getStaticProps = async ({ params }) => {
@@ -17,7 +17,7 @@ export const getStaticProps = async ({ params }) => {
 
   return {
     revalidate: 30,
-    props : {
+    props: {
       offer
     }
   };
@@ -25,8 +25,8 @@ export const getStaticProps = async ({ params }) => {
 
 export default function OfferPage({ offer }) {
   const router = useRouter();
-  if(router.isFallback){
-    return <BaseLayout>Loading...</BaseLayout>
+  if (router.isFallback) {
+    return <BaseLayout>Loading...</BaseLayout>;
   }
 
   return (

@@ -3,7 +3,7 @@ import Joi from 'joi';
 
 const schema = Joi.object({
   title: Joi.string().required(),
-  category: Joi.string().valid('rent','sale').required(),
+  category: Joi.string().valid('rent', 'sale').required(),
   mobile: Joi.string().required(),
   description: Joi.string().required(),
   location: Joi.string().required(),
@@ -22,6 +22,6 @@ const create = async (payload) => {
   ]);
 
   return offer;
-}
+};
 
 export default create;

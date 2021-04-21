@@ -13,7 +13,7 @@ const checkEmail = async (email) => {
     .select({ filterByFormula: `email="${email}"` })
     .firstPage();
 
-  if(existingUser && existingUser[0]){
+  if (existingUser && existingUser[0]) {
     throw new Error('email_taken');
   }
 };
@@ -39,6 +39,6 @@ const create = async (payload) => {
   ]);
 
   return user;
-}
+};
 
 export default create;

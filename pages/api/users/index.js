@@ -7,9 +7,9 @@ export default async (req, res) => {
         const payload = req.body;
         const user = await createUser(payload);
 
-        res.status(200).json({ status: 'created', user});
+        res.status(200).json({ status: 'created', user });
       } catch (error) {
-        res.status(422).json({ status: 'not_created', error: error.message});
+        res.status(422).json({ status: 'not_created', error: error.message });
       }
       break;
     }

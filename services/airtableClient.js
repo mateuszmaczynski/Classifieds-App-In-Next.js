@@ -1,4 +1,4 @@
-import Airtable from "airtable";
+import Airtable from 'airtable';
 
 Airtable.configure({
   endpointUrl: 'https://api.airtable.com',

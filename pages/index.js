@@ -1,12 +1,12 @@
 import BaseLayout from 'components/BaseLayout';
 import Link from 'next/link';
 import Image from 'next/image';
-import useSWR from "swr";
-import getRecentOffers from "services/offers/getRecent";
+import useSWR from 'swr';
+import getRecentOffers from 'services/offers/getRecent';
 import { jsonFetcher } from 'utils';
 
 export const getStaticProps = async () => {
-  const offers = await  getRecentOffers(4);
+  const offers = await getRecentOffers(4);
 
   return {
     props: {
@@ -15,8 +15,8 @@ export const getStaticProps = async () => {
   };
 };
 
-export default function Home({offers}) {
-  const { data } = useSWR('/api/offers', jsonFetcher, { initialData: offers});
+export default function Home({ offers }) {
+  const { data } = useSWR('/api/offers', jsonFetcher, { initialData: offers });
   return (
     <BaseLayout>
       <section className="text-gray-600 body-font">
