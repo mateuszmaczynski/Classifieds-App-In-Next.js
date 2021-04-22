@@ -10,12 +10,13 @@ const schema = Joi.object({
   price: Joi.number().greater(0).required()
 });
 
-const create = async (payload) => {
-  const validateOffer = await schema.validateAsync(payload);
+const create = async (payload, userId) => {
+  const validatedOffer = await schema.validateAsync(payload);
   const offer = await db('offers').create([
     {
       fields: {
-        ...validateOffer,
+        ...validatedOffer,
+        users: [userId],
         status: 'inactive'
       }
     }
@@ -23,5 +24,4 @@ const create = async (payload) => {
 
   return offer;
 };
-
 export default create;

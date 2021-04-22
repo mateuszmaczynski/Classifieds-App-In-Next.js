@@ -1,20 +1,27 @@
-import { useRef, useState } from 'react';
-import BaseLayout from '../../components/BaseLayout';
+import { useRef, useState, useEffect } from 'react';
+import BaseLayout from 'components/BaseLayout';
 import { useRouter } from 'next/router';
+import { useSession } from 'next-auth/client';
 
 export default function OfferNew() {
-  const [formProcessing, setFormProcessing] = useState(false);
-  const [error, setError] = useState();
   const offerForm = useRef();
   const router = useRouter();
+  const [formProcessing, setFormProcessing] = useState(false);
+  const [error, setError] = useState();
+  const [session, loading] = useSession();
+
+  useEffect(() => {
+    if (!session && !loading) {
+      router.push('/user/signin');
+    }
+  }, [session, loading]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (formProcessing) return;
-    setFormProcessing(true);
     setError(null);
+    setFormProcessing(true);
     const form = new FormData(offerForm.current);
-
     const payload = {
       title: form.get('title'),
       category: form.get('category'),
@@ -37,9 +44,17 @@ export default function OfferNew() {
     } else {
       const payload = await response.json();
       setFormProcessing(false);
-      setError(payload.error?.details[0]?.message);
+      setError(payload.error?.details[0].message);
     }
   };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!loading && !session) {
+    return <div>Redirecting...</div>;
+  }
 
   return (
     <BaseLayout>
@@ -145,7 +160,7 @@ export default function OfferNew() {
                 </button>
                 {error && (
                   <div className="flex justify-center w-full my-5">
-                    <span className="bg-red-600 w-full rounded text-center text-white">
+                    <span className="bg-red-600 w-full rounded text-white px-3 py-3 text-center">
                       Offer not added: {error}
                     </span>
                   </div>
