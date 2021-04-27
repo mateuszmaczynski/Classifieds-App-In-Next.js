@@ -40,6 +40,11 @@ const TopNavigation = () => {
               <span>Submit offer</span>
             </a>
           </Link>
+          <Link href="/offers">
+            <a className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-gray-400 items-center justify-center hover:bg-gray-900 hover:text-white">
+              <span>All offers</span>
+            </a>
+          </Link>
         </div>
         {session && (
           <Link href="/offers/my">
@@ -48,14 +53,18 @@ const TopNavigation = () => {
             </a>
           </Link>
         )}
+        {session && session.user.role === 'admin' && (
+          <Link href="/admin/offers">
+            <a className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-gray-400 items-center justify-center hover:bg-gray-900 hover:text-white">
+              <span>Admin</span>
+            </a>
+          </Link>
+        )}
         {session && (
-          <a
-            onClick={signOut}
-            className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-gray-400 items-center justify-center hover:bg-gray-900 hover:text-white">
+          <a onClick={signOut} className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-gray-400 items-center justify-center hover:bg-gray-900 hover:text-white">
             <span>Logout</span>
           </a>
         )}
-
         {!session && !loading && (
           <Link href="/user/signin">
             <a className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-gray-400 items-center justify-center hover:bg-gray-900 hover:text-white">
