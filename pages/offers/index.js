@@ -42,7 +42,6 @@ export default function Home({ offers, offset }) {
     handleFilters();
   }, [query]);
 
-
   return (
     <BaseLayout>
       <section className="text-gray-600 body-font">
@@ -62,9 +61,9 @@ export default function Home({ offers, offset }) {
             </Link>
             <Link href="?category=rent">
               {/*<div className="p-1">*/}
-                <button className={query.category === 'rent' ? 'btn-primary' : 'btn-secondary'}>
-                  For rent
-                </button>
+              <button className={query.category === 'rent' ? 'btn-primary' : 'btn-secondary'}>
+                For rent
+              </button>
               {/*</div>*/}
             </Link>
           </div>

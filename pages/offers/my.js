@@ -2,11 +2,11 @@ import BaseLayout from 'components/BaseLayout';
 import Link from 'next/link';
 import Image from 'next/image';
 import getForUser from 'services/offers/getForUser';
-import { getSession } from "next-auth/client";
+import { getSession } from 'next-auth/client';
 
 export const getServerSideProps = async ({ req }) => {
   const session = await getSession({ req });
-  if(!session){
+  if (!session) {
     return {
       redirect: {
         destination: '/user/signin',
@@ -25,7 +25,6 @@ export const getServerSideProps = async ({ req }) => {
 };
 
 export default function MyOffers({ offers }) {
-
   return (
     <BaseLayout>
       <section className="text-gray-600 body-font">
