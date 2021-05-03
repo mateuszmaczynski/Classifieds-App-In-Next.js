@@ -6,7 +6,6 @@ export default async (req, res) => {
       try {
         const orderItem = req.body;
         const checkout = await createCheckout(orderItem);
-
         res.status(200).json({ status: 'created', checkout });
       } catch (error) {
         res.status(422).json({ status: 'not_created', error });

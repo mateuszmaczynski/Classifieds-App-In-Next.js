@@ -1,6 +1,6 @@
 import Stripe from 'stripe';
 import getOfferById from 'services/offers/get';
-import airDB from 'services/airtableClient';
+import db from 'services/airtableClient';
 
 export const finalize = async (offerId) => {
   let offer = await getOfferById(offerId);
@@ -13,7 +13,7 @@ export const finalize = async (offerId) => {
   const paymentIntent = await stripe.paymentIntents.retrieve(checkout.payment_intent);
 
   if (paymentIntent.status === 'succeeded') {
-    offer = await airDB('offers').update([
+    offer = await db('offers').update([
       {
         id: offer.airtableId,
         fields: {

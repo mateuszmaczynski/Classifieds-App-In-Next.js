@@ -46,7 +46,6 @@ export const createCheckout = async (payload) => {
 
   const session = await stripe.checkout.sessions.create(paymentObject);
   const offer = await getOfferById(orderItem.offerId);
-
   await db('offers').update([
     {
       id: offer.airtableId,
