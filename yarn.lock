@@ -2494,7 +2494,7 @@
   "resolved" "https://registry.npmjs.org/node-releases/-/node-releases-1.1.71.tgz"
   "version" "1.1.71"
 
-"nodemailer@^6.4.16":
+"nodemailer@^6.4.16", "nodemailer@^6.6.0":
   "integrity" "sha512-ikSMDU1nZqpo2WUPE0wTTw/NGGImTkwpJKDIFPZT+YvvR9Sj+ze5wzu95JHkBMglQLoG2ITxU21WukCC/XsFkg=="
   "resolved" "https://registry.npmjs.org/nodemailer/-/nodemailer-6.6.0.tgz"
   "version" "6.6.0"
