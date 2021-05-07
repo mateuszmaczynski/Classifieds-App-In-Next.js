@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import Link from 'next/link';
 import BaseLayout from 'components/BaseLayout';
 import { useRouter } from 'next/router';
 import { signIn } from 'next-auth/client';
@@ -68,20 +69,25 @@ export default function SignIn() {
                   />
                 </div>
               </div>
-              <div className="p-2 w-full">
+              <div className="p-2 w-full flex justify-between">
+                <Link href="/user/resetPassword">
+                  <button className="disabled:opacity-50 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">
+                    Forgot password
+                  </button>
+                </Link>
                 <button
                   disabled={formProcessing}
-                  className="disabled:opacity-50 flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">
+                  className="disabled:opacity-50 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">
                   {formProcessing ? 'Please wait...' : 'Login'}
                 </button>
-                {error && (
-                  <div className="flex justify-center w-full my-5">
+              </div>
+              {error && (
+                <div className="flex justify-center w-full my-5">
                     <span className="bg-red-600 w-full rounded text-white px-3 py-3 text-center">
                       {error}
                     </span>
-                  </div>
-                )}
-              </div>
+                </div>
+              )}
             </form>
           </div>
         </div>
