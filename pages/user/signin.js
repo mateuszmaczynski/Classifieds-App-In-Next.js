@@ -83,9 +83,9 @@ export default function SignIn() {
               </div>
               {error && (
                 <div className="flex justify-center w-full my-5">
-                    <span className="bg-red-600 w-full rounded text-white px-3 py-3 text-center">
-                      {error}
-                    </span>
+                  <span className="bg-red-600 w-full rounded text-white px-3 py-3 text-center">
+                    {error}
+                  </span>
                 </div>
               )}
             </form>

@@ -48,7 +48,7 @@ export default function updatePassword() {
       setFormProcessing(false);
       setError(payload.error);
     }
-  }
+  };
 
   return (
     <BaseLayout>

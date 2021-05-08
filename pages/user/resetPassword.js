@@ -14,7 +14,7 @@ export default function ResetPassword() {
     setFormProcessing(true);
     const form = new FormData(userForm.current);
     const payload = {
-      email: form.get('email'),
+      email: form.get('email')
     };
 
     const response = await fetch('/api/users/resetPassword', {
@@ -22,7 +22,7 @@ export default function ResetPassword() {
         'Content-Type': 'application/json'
       },
       method: 'POST',
-      body: JSON.stringify(payload),
+      body: JSON.stringify(payload)
     });
 
     if (response.ok) {
