@@ -9,3 +9,4 @@ npm run dev
 # or
 yarn dev
 ```
+App published in https://wonderful-panini-a48466.netlify.app
