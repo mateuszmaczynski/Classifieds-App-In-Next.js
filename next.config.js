@@ -1,5 +1,5 @@
 module.exports = {
-  mode: 'serverless',
+  target: 'serverless',
   images: {
     domains: ['res.cloudinary.com']
   }
